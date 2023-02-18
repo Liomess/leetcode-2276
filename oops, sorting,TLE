@@ -1,0 +1,40 @@
+class CountIntervals:
+
+    def __init__(self):
+        self.arr=[]
+        self.ans=[]
+    def add(self, left: int, right: int) -> None:
+        self.left=left
+        self.right=right
+        
+        if self.arr==[]:
+            self.arr.append([left,right])
+        else:
+            self.arr.append([left,right])
+            self.arr.sort()
+            prev=self.arr[0]
+            for i in range(1,len(self.arr)):
+                curr=self.arr[i]
+                if curr[0]<=prev[1]:
+                    prev[0]=min(curr[0],prev[0])
+                    prev[1]=max(curr[1],prev[1])
+                else:
+                    self.ans.append(prev)
+                    prev=curr
+            self.ans.append(prev)
+            self.arr=self.ans
+            self.ans=[]
+        
+
+    def count(self) -> int:
+        
+        count=0
+        for i in range(len(self.arr)):
+            count+=(self.arr[i][1]-self.arr[i][0])+1
+        return count
+
+
+# Your CountIntervals object will be instantiated and called as such:
+# obj = CountIntervals()
+# obj.add(left,right)
+# param_2 = obj.count()
